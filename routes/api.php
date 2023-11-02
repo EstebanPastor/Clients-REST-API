@@ -20,3 +20,4 @@ Route::put("/services/{service}", "\App\Http\Controllers\ServiceController@updat
 Route::delete("/services/{service}", "\App\Http\Controllers\ServiceController@destroy");
 
 Route::post("/clients/service", "\App\Http\Controllers\ClientController@attach");
+Route::post("/clients/service/detach", "\App\Http\Controllers\ClientController@detach");
