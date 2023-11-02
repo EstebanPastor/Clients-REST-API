@@ -44,8 +44,13 @@ class ClientController extends Controller
 
 
     public function show(Client $client)
-    {   
-        return response() ->json($client);
+    
+    {   $data= [
+        "message" => "Client found successfully",
+        "client" => $client,
+        "services" => $client->services
+    ];   
+        return response() ->json($data);
     }
 
 
@@ -80,6 +85,18 @@ class ClientController extends Controller
             "client" => $client
         ];
 
+        return response()->json($data);
+    }
+
+    public function attach(Request $request,) {
+
+        $client = Client::find($request->client_id);
+        $client->services()->attach($request->service_id);
+        
+        $data = [
+            "message" => "Service attached successfully",
+            "client" => $client
+        ];
         return response()->json($data);
     }
 }
